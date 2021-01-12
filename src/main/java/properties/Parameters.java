@@ -8,6 +8,7 @@ public class Parameters {
 
     // this is where excel file with input and output sheet is
     public static final String excelFileLocation = "src/main/resources/twitter.xlsx";
+
     private static String newline = System.getProperty("line.separator");
 
     public static  String messageToSend(String username, String game) {

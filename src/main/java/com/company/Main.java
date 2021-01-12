@@ -40,6 +40,12 @@ public class Main {
             try { Thread.sleep(5000); } catch(Exception e){}
 
             TwitterProfilePage twitterProfilePage = new TwitterProfilePage(driver, wait);
+            if(SelUtils.ifElementExists(driver, "div[data-testid*=follow]")) {
+                // poziva follow funkciju koja je u TwitterProfilePage klasi
+                twitterProfilePage.followProfile();
+                ReadWriteExcel.writeFollowDate(twitterURL);
+            }
+
             if(SelUtils.ifElementExists(driver, "div[data-testid=sendDMFromProfile]"))
                 twitterProfilePage.clickSendDM();
             else {

@@ -15,6 +15,8 @@ import java.util.List;
 public class TwitterProfilePage {
     private final WebDriver driver;
     private final WebDriverWait wait;
+    @FindBy(css = "div[data-testid*=follow]")
+    private WebElement followButton;
     @FindBy(css = "div[data-testid=sendDMFromProfile]")
     private WebElement sendDM;
     @FindBy(css = "div[data-testid=confirmationSheetCancel]")
@@ -24,6 +26,18 @@ public class TwitterProfilePage {
         this.driver = driver;
         this.wait = wait;
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
+    }
+
+    // klik na follow dugme
+    public void followProfile(){
+        if(SelUtils.ifElementExists(driver, "div[data-testid=confirmationSheetCancel]")){
+            cancelWelcome.click();
+            try { Thread.sleep(8000); } catch(Exception e){}
+        }
+
+        try {
+            SelUtils.waitToClickAndClick(followButton, wait);
+        } catch (Exception e){e.printStackTrace();}
     }
 
     public void clickSendDM(){

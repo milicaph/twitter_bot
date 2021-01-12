@@ -46,9 +46,9 @@ public class ReadWriteExcel {
         for(Row row: sheet) {
             Cell cName = row.getCell(1);
             if(!cellIsEmpty(cName)) {
-                boolean containsSring = cName.getStringCellValue()
+                boolean containsString = cName.getStringCellValue()
                         .contains(twitterURL);
-                if (containsSring)
+                if (containsString)
                     return row;
             }
         }
@@ -99,12 +99,27 @@ public class ReadWriteExcel {
         Row row = exactRow(sheetI, url);
         int i = row.getRowNum();
         System.out.println("ROWNUM " + i);
-        ;
+
 
         Cell cellA = row.createCell(4);
         cellA.setCellValue(dm);
         Cell cellB = row.createCell(3);
         cellB.setCellValue(SelUtils.getCurrentDate());
+
+        writeDataOutput(workbook);
+
+
+    }
+
+    public static void writeFollowDate(String url) throws IOException {
+        FileInputStream fis = getInputStream();
+        Workbook workbook = getWorkbook(fis);
+        Sheet sheetI = getSheet(workbook, "input");
+        Row row = exactRow(sheetI, url);
+
+        String stringToWrite = "Followed at: " + SelUtils.getCurrentDate();
+        Cell cellFD = row.createCell(5);
+        cellFD.setCellValue(stringToWrite);
 
         writeDataOutput(workbook);
 
