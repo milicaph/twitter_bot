@@ -28,7 +28,7 @@ public class TwitterProfilePage {
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 15), this);
     }
 
-    // klik na follow dugme
+    
     public void followProfile(){
         if(SelUtils.ifElementExists(driver, "div[data-testid=confirmationSheetCancel]")){
             cancelWelcome.click();
