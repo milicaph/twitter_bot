@@ -41,7 +41,6 @@ public class Main {
 
             TwitterProfilePage twitterProfilePage = new TwitterProfilePage(driver, wait);
             if(SelUtils.ifElementExists(driver, "div[data-testid*=follow]")) {
-                // poziva follow funkciju koja je u TwitterProfilePage klasi
                 twitterProfilePage.followProfile();
                 ReadWriteExcel.writeFollowDate(twitterURL);
             }
